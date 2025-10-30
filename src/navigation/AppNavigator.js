@@ -21,7 +21,7 @@ export default function AppNavigator() {
   // stack screen
   // inside the stack screen - call out of bottom tabs  as one of the screens
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="BottomTabs" component={MyTabs} />
       {/* <Stack.Screen name="Profile" component={Profile} /> */}
     </Stack.Navigator>
