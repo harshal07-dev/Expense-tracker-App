@@ -12,6 +12,6 @@ Features
 -Expo
 -React Native
 -AsyncStorage
-![screen-1](https://github.com/user-attachments/assets/d6338e13-4479-47ca-b931-5d258a05df70)
-![screen-2](https://github.com/user-attachments/assets/ab426a08-1a6c-445d-bff5-c5bd27c6cf51)
-![screen-3](https://github.com/user-attachments/assets/053166f7-7516-4f0a-ad13-355909cfb48a)
+<img width="406" height="569" alt="image" src="https://github.com/user-attachments/assets/4e4c6949-90e2-44b8-afe3-02d2583f8194" />
+
+
