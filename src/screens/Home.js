@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import ExpenseItemCard from "../components/ExpenseItemCard";
 import EmptyList from "../components/EmptyList ";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useExpenses } from "../context/ExpenseContext";
 
 const ExpenseData = [
   {
@@ -69,7 +70,11 @@ const ExpenseData = [
 ];
 
 const Home = ({ navigation }) => {
-  const totalSpend = ExpenseData.reduce((sum, item) => sum + item.amount, 0);
+  const { expenses } = useExpenses();
+  const totalSpend = (expenses || []).reduce(
+    (sum, item) => sum + Number(item.amount || 0),
+    0
+  );
   return (
     <SafeAreaView className="flex-1">
       <StatusBar barStyle="dark-content" />
@@ -86,11 +91,11 @@ const Home = ({ navigation }) => {
         </Text>
       </View>
       <FlatList
-        data={ExpenseData}
+        data={expenses}
         renderItem={({ item, index }) => (
           <ExpenseItemCard item={item} index={index} />
         )}
-        // keyExtractor={(item) => item}
+        keyExtractor={(item) => String(item.id)}
         contentContainerStyle={{ paddingBottom: 20 }}
         ListEmptyComponent={<EmptyList />}
       />

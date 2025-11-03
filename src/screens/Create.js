@@ -10,28 +10,37 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TabRouter } from "@react-navigation/native";
+import { useExpenses } from "../context/ExpenseContext";
 
 const Create = ({ navigation, route }) => {
   const [amount, setAmount] = useState(null);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState({});
+  const { addExpense } = useExpenses();
 
   React.useEffect(() => {
     if (route.params?.category) {
       console.log("paramas", route.params?.category);
       setCategory(route.params?.category);
     }
-  });
+  }, [route.params?.category]);
 
   const handleExpense = () => {
-    if (!amount || !title || !category) {
+    if (!amount || !title || !category?.name) {
       console.log("All fields are mandatory");
-      Alert.alert("All fiedls are mandatory");
+      Alert.alert("All fields are mandatory");
       return;
     }
-    console.log("amount", amount);
-    console.log("title", title);
-    console.log("category", category.name);
+    addExpense({
+      title: title,
+      amount: amount,
+      category: category,
+    });
+    // reset and navigate back to Home tab
+    setAmount(null);
+    setTitle("");
+    // keep chosen category for convenience
+    navigation.navigate("Home");
   };
   const handleCategoryInput = () => {
     console.log("Pressed");
